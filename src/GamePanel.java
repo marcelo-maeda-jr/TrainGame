@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	//sprites do jogo
 	BufferedImage trainLocomotiveImgL, trainLocomotiveImgR, trainLocomotiveImgU, trainLocomotiveImgD;
 	BufferedImage trainWagonH, trainWagonV;
-	BufferedImage wall;
+	BufferedImage wallImg;
 	BufferedImage gameOverImg;
 
 	List<Wall> walls = new ArrayList<Wall>();
@@ -52,6 +52,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		this.setFocusable(true);
 		this.addKeyListener(new TrainControls());
 		imageLoader();
+		placeWalls();
 		initialTrainPos(train, 5, 5);
 		startGame();
 	}
@@ -70,7 +71,7 @@ public class GamePanel extends JPanel implements ActionListener {
 			trainWagonV = ImageIO.read(new File("assets/wagons/wagonV.png"));
 
 			// carrega imagem da parede
-			wall = ImageIO.read(new File("assets/wall.png"));
+			wallImg = ImageIO.read(new File("assets/wall.png"));
 
 			gameOverImg = ImageIO.read(new File("assets/gameOver.png"));
 
@@ -91,7 +92,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		super.paintComponent(g);
 		if (running) {
 			drawCoordinateLines(g);
-			placeWalls(g);
+			drawWall(g);
 			drawTrain(g, train);
 		} else {
 			gameOver(g);
@@ -108,21 +109,26 @@ public class GamePanel extends JPanel implements ActionListener {
 		}
 	}
 
-	public void placeWalls(Graphics g) {
+	public void placeWalls() {
 		for(int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++) {
-			drawWall(g, 0, i);
-			drawWall(g, SCREEN_WIDTH/UNIT_SIZE - 1, i);
+			placeWall(0, i);
+			placeWall(SCREEN_WIDTH/UNIT_SIZE - 1, i);
 		}
 		for(int i = 0; i < SCREEN_WIDTH/UNIT_SIZE; i++) {
-			drawWall(g, i, 0);
-			drawWall(g, i, SCREEN_HEIGHT/UNIT_SIZE - 1);
+			placeWall(i, 0);
+			placeWall(i, SCREEN_HEIGHT/UNIT_SIZE - 1);
 		}
 		
 	}
 
-	public void drawWall(Graphics g, int x, int y) {
-		g.drawImage(wall, x * UNIT_SIZE, y * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
-		walls.add(new Wall(x, y));
+	public void drawWall(Graphics g) {
+		for(Wall wall: walls) {
+			g.drawImage(wallImg, wall.getPosX() * UNIT_SIZE, wall.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+		}
+	}
+	
+	public void placeWall(int posX, int PosY) {
+		walls.add(new Wall(posX, PosY));
 	}
 
 	public void initialTrainPos(Train t, int posX, int PosY) {
