@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 public class TrainPart {
 	int posX;
 	int posY;

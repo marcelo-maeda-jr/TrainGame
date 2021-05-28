@@ -123,6 +123,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		}
 	}
 	
+	/* #### Paredes #### */
 	public void placeWall(int posX, int PosY) {
 		walls.add(new Wall(posX, PosY));
 	}
@@ -145,7 +146,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		
 	}
 
-	
+	/* #### Pessoas #### */
 	
 	
 	public void initialTrainPos(Train t, int posX, int PosY) {

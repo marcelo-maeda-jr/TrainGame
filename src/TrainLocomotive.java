@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 public class TrainLocomotive extends TrainPart {
 
 	public TrainLocomotive(int posX, int posY) {
