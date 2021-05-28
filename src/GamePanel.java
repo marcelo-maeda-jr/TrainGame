@@ -336,6 +336,7 @@ public class GamePanel extends JPanel implements ActionListener {
 								UNIT_SIZE, null);
 					}
 				}
+				
 
 			}
 			currentPos += 1;
