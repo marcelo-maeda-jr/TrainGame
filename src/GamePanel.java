@@ -44,6 +44,8 @@ public class GamePanel extends JPanel implements ActionListener {
 	BufferedImage woodWagonH, woodWagonV;
 
 	BufferedImage personAImg, personBImg, personCImg, personDImg, personEImg;
+	
+	BufferedImage gasCan, giraffe, gold, tree;
 
 	BufferedImage wallImg;
 	BufferedImage gameOverImg;
@@ -93,6 +95,12 @@ public class GamePanel extends JPanel implements ActionListener {
 			personCImg = ImageIO.read(new File("assets/People/personC.png"));
 			personDImg = ImageIO.read(new File("assets/People/personD.png"));
 			personEImg = ImageIO.read(new File("assets/People/personE.png"));
+			
+			// CARREGA IMAGENS DOS ITENS
+			gasCan = ImageIO.read(new File("assets/Items/gasCan.png"));
+			giraffe = ImageIO.read(new File("assets/Items/giraffe.png"));
+			gold = ImageIO.read(new File("assets/Items/gold.png"));
+			tree = ImageIO.read(new File("assets/Items/tree.png"));
 
 			// carrega imagem da parede
 			wallImg = ImageIO.read(new File("assets/wall.png"));
