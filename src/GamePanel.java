@@ -43,10 +43,13 @@ public class GamePanel extends JPanel implements ActionListener {
 	BufferedImage goldWagonH, goldWagonV;
 	BufferedImage woodWagonH, woodWagonV;
 	
+	BufferedImage personAImg, personBImg, personCImg, personDImg, personEImg;
+	
 	BufferedImage wallImg;
 	BufferedImage gameOverImg;
 
 	List<Wall> walls = new ArrayList<Wall>();
+	List<Person> people = new ArrayList<Person>();
 	
 
 	Train train = new Train();
@@ -59,6 +62,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		this.addKeyListener(new TrainControls());
 		imageLoader();
 		placeWalls();
+		placePeople();
 		initialTrainPos(train, 5, 5);
 		startGame();
 	}
@@ -83,6 +87,13 @@ public class GamePanel extends JPanel implements ActionListener {
 			goldWagonV = ImageIO.read(new File("assets/wagons/goldWagonV.png"));
 			woodWagonH = ImageIO.read(new File("assets/wagons/woodWagonH.png"));
 			woodWagonV = ImageIO.read(new File("assets/wagons/woodWagonV.png"));
+			
+			// CARREGA IMAGENS DAS PESSOAS
+			personAImg = ImageIO.read(new File("assets/People/personA.png"));
+			personBImg = ImageIO.read(new File("assets/People/personB.png"));
+			personCImg = ImageIO.read(new File("assets/People/personC.png"));
+			personDImg = ImageIO.read(new File("assets/People/personD.png"));
+			personEImg = ImageIO.read(new File("assets/People/personE.png"));
 
 			// carrega imagem da parede
 			wallImg = ImageIO.read(new File("assets/wall.png"));
@@ -107,6 +118,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		if (running) {
 			drawCoordinateLines(g);
 			drawWall(g);
+			drawPerson(g);
 			drawTrain(g, train);
 		} else {
 			gameOver(g);
@@ -147,6 +159,49 @@ public class GamePanel extends JPanel implements ActionListener {
 	}
 
 	/* #### Pessoas #### */
+	public void placePersonA(int posX, int posY) {
+		people.add(new PersonA(posX, posY));
+	}
+	public void placePersonB(int posX, int posY) {
+		people.add(new PersonB(posX, posY));
+	}
+	public void placePersonC(int posX, int posY) {
+		people.add(new PersonC(posX, posY));
+	}
+	public void placePersonD(int posX, int posY) {
+		people.add(new PersonD(posX, posY));
+	}
+	public void placePersonE(int posX, int posY) {
+		people.add(new PersonE(posX, posY));
+	}
+	
+	public void drawPerson(Graphics g) {
+		for(Person person: people) {
+			if(person instanceof PersonA) {
+				g.drawImage(personAImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			}
+			if(person instanceof PersonB) {
+				g.drawImage(personBImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			}
+			if(person instanceof PersonC) {
+				g.drawImage(personCImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			}
+			if(person instanceof PersonD) {
+				g.drawImage(personDImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			}
+			if(person instanceof PersonE) {
+				g.drawImage(personEImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			}
+		}
+	}
+	
+	public void placePeople() {
+		placePersonA(2, 2);
+		placePersonB(3, 2);
+		placePersonC(4, 2);
+		placePersonD(5, 2);
+		placePersonE(6, 2);
+	}
 	
 	
 	public void initialTrainPos(Train t, int posX, int PosY) {
