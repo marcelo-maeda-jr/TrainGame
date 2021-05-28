@@ -108,6 +108,16 @@ public class GamePanel extends JPanel implements ActionListener {
 			g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
 		}
 	}
+	
+	public void placeWall(int posX, int PosY) {
+		walls.add(new Wall(posX, PosY));
+	}
+	
+	public void drawWall(Graphics g) {
+		for(Wall wall: walls) {
+			g.drawImage(wallImg, wall.getPosX() * UNIT_SIZE, wall.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+		}
+	}
 
 	public void placeWalls() {
 		for(int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++) {
@@ -121,16 +131,9 @@ public class GamePanel extends JPanel implements ActionListener {
 		
 	}
 
-	public void drawWall(Graphics g) {
-		for(Wall wall: walls) {
-			g.drawImage(wallImg, wall.getPosX() * UNIT_SIZE, wall.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
-		}
-	}
 	
-	public void placeWall(int posX, int PosY) {
-		walls.add(new Wall(posX, PosY));
-	}
-
+	
+	
 	public void initialTrainPos(Train t, int posX, int PosY) {
 		t.trainParts.add(new TrainLocomotive(posX, PosY));
 		t.trainParts.add(new Wagon(posX, PosY + 1));
