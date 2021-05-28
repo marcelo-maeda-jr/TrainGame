@@ -35,22 +35,21 @@ public class GamePanel extends JPanel implements ActionListener {
 	private boolean running = false;
 	private Timer timer;
 
-	//sprites do jogo
+	// sprites do jogo
 	BufferedImage trainLocomotiveImgL, trainLocomotiveImgR, trainLocomotiveImgU, trainLocomotiveImgD;
 	BufferedImage trainWagonH, trainWagonV;
 	BufferedImage gasWagonH, gasWagonV;
 	BufferedImage giraffeWagonH, giraffeWagonV;
 	BufferedImage goldWagonH, goldWagonV;
 	BufferedImage woodWagonH, woodWagonV;
-	
+
 	BufferedImage personAImg, personBImg, personCImg, personDImg, personEImg;
-	
+
 	BufferedImage wallImg;
 	BufferedImage gameOverImg;
 
 	List<Wall> walls = new ArrayList<Wall>();
 	List<Person> people = new ArrayList<Person>();
-	
 
 	Train train = new Train();
 
@@ -75,7 +74,7 @@ public class GamePanel extends JPanel implements ActionListener {
 			trainLocomotiveImgR = ImageIO.read(new File("assets/Train/trainRight.png"));
 			trainLocomotiveImgU = ImageIO.read(new File("assets/Train/trainUp.png"));
 			trainLocomotiveImgD = ImageIO.read(new File("assets/Train/trainDown.png"));
-			
+
 			// carrega imagens dos vagoes
 			trainWagonH = ImageIO.read(new File("assets/wagons/wagonH.png"));
 			trainWagonV = ImageIO.read(new File("assets/wagons/wagonV.png"));
@@ -87,7 +86,7 @@ public class GamePanel extends JPanel implements ActionListener {
 			goldWagonV = ImageIO.read(new File("assets/wagons/goldWagonV.png"));
 			woodWagonH = ImageIO.read(new File("assets/wagons/woodWagonH.png"));
 			woodWagonV = ImageIO.read(new File("assets/wagons/woodWagonV.png"));
-			
+
 			// CARREGA IMAGENS DAS PESSOAS
 			personAImg = ImageIO.read(new File("assets/People/personA.png"));
 			personBImg = ImageIO.read(new File("assets/People/personB.png"));
@@ -134,67 +133,76 @@ public class GamePanel extends JPanel implements ActionListener {
 			g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
 		}
 	}
-	
+
 	/* #### Paredes #### */
 	public void placeWall(int posX, int PosY) {
 		walls.add(new Wall(posX, PosY));
 	}
-	
+
 	public void drawWall(Graphics g) {
-		for(Wall wall: walls) {
+		for (Wall wall : walls) {
 			g.drawImage(wallImg, wall.getPosX() * UNIT_SIZE, wall.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
 		}
 	}
 
 	public void placeWalls() {
-		for(int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++) {
+		for (int i = 0; i < SCREEN_HEIGHT / UNIT_SIZE; i++) {
 			placeWall(0, i);
-			placeWall(SCREEN_WIDTH/UNIT_SIZE - 1, i);
+			placeWall(SCREEN_WIDTH / UNIT_SIZE - 1, i);
 		}
-		for(int i = 0; i < SCREEN_WIDTH/UNIT_SIZE; i++) {
+		for (int i = 0; i < SCREEN_WIDTH / UNIT_SIZE; i++) {
 			placeWall(i, 0);
-			placeWall(i, SCREEN_HEIGHT/UNIT_SIZE - 1);
+			placeWall(i, SCREEN_HEIGHT / UNIT_SIZE - 1);
 		}
-		
+
 	}
 
 	/* #### Pessoas #### */
 	public void placePersonA(int posX, int posY) {
 		people.add(new PersonA(posX, posY));
 	}
+
 	public void placePersonB(int posX, int posY) {
 		people.add(new PersonB(posX, posY));
 	}
+
 	public void placePersonC(int posX, int posY) {
 		people.add(new PersonC(posX, posY));
 	}
+
 	public void placePersonD(int posX, int posY) {
 		people.add(new PersonD(posX, posY));
 	}
+
 	public void placePersonE(int posX, int posY) {
 		people.add(new PersonE(posX, posY));
 	}
-	
+
 	public void drawPerson(Graphics g) {
-		for(Person person: people) {
-			if(person instanceof PersonA) {
-				g.drawImage(personAImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+		for (Person person : people) {
+			if (person instanceof PersonA) {
+				g.drawImage(personAImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE,
+						UNIT_SIZE, null);
 			}
-			if(person instanceof PersonB) {
-				g.drawImage(personBImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			if (person instanceof PersonB) {
+				g.drawImage(personBImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE,
+						UNIT_SIZE, null);
 			}
-			if(person instanceof PersonC) {
-				g.drawImage(personCImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			if (person instanceof PersonC) {
+				g.drawImage(personCImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE,
+						UNIT_SIZE, null);
 			}
-			if(person instanceof PersonD) {
-				g.drawImage(personDImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			if (person instanceof PersonD) {
+				g.drawImage(personDImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE,
+						UNIT_SIZE, null);
 			}
-			if(person instanceof PersonE) {
-				g.drawImage(personEImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			if (person instanceof PersonE) {
+				g.drawImage(personEImg, person.getPosX() * UNIT_SIZE, person.getPosY() * UNIT_SIZE, UNIT_SIZE,
+						UNIT_SIZE, null);
 			}
 		}
 	}
-	
+
 	public void placePeople() {
 		placePersonA(2, 2);
 		placePersonB(3, 2);
@@ -202,19 +210,18 @@ public class GamePanel extends JPanel implements ActionListener {
 		placePersonD(5, 2);
 		placePersonE(6, 2);
 	}
-	
-	
+
 	public void initialTrainPos(Train t, int posX, int PosY) {
 		t.trainParts.add(new TrainLocomotive(posX, PosY));
-		t.trainParts.add(new Wagon(posX, PosY + 1));
-		t.trainParts.add(new Wagon(posX, PosY + 2));
+		// t.trainParts.add(new Wagon(posX, PosY));
+		// t.trainParts.add(new Wagon(posX, PosY));
 	}
 
 	public void drawTrain(Graphics g, Train train) {
 		g.setColor(Color.red);
 		int currentPos = 0;
 		for (TrainPart trainPart : train.trainParts) {
-			
+
 			if (train.trainParts.indexOf(trainPart) == 0) {
 				if (direction == 'L') {
 					g.drawImage(trainLocomotiveImgL, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
@@ -232,24 +239,27 @@ public class GamePanel extends JPanel implements ActionListener {
 					g.drawImage(trainLocomotiveImgD, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
 							UNIT_SIZE, null);
 				}
-				
-			}
-			else {
-				if(train.trainParts.get(currentPos) instanceof Wagon) {
-					if(train.trainParts.get(currentPos - 1).posX > train.trainParts.get(currentPos).posX) {
-						g.drawImage(trainWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+
+			} else {
+				if (train.trainParts.get(currentPos) instanceof Wagon) {
+					if (train.trainParts.get(currentPos - 1).posX > train.trainParts.get(currentPos).posX) {
+						g.drawImage(trainWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
 					}
-					if(train.trainParts.get(currentPos - 1).posX < train.trainParts.get(currentPos).posX){
-						g.drawImage(trainWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+					if (train.trainParts.get(currentPos - 1).posX < train.trainParts.get(currentPos).posX) {
+						g.drawImage(trainWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
 					}
-					if(train.trainParts.get(currentPos - 1).posY < train.trainParts.get(currentPos).posY) {
-						g.drawImage(trainWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+					if (train.trainParts.get(currentPos - 1).posY < train.trainParts.get(currentPos).posY) {
+						g.drawImage(trainWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
 					}
-					if(train.trainParts.get(currentPos - 1).posY > train.trainParts.get(currentPos).posY) {
-						g.drawImage(trainWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+					if (train.trainParts.get(currentPos - 1).posY > train.trainParts.get(currentPos).posY) {
+						g.drawImage(trainWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
 					}
 				}
-				
+
 			}
 			currentPos += 1;
 		}
@@ -281,7 +291,7 @@ public class GamePanel extends JPanel implements ActionListener {
 			break;
 		}
 	}
-	
+
 	public void addTrain(Train train, int posX, int posY) {
 		train.trainParts.add(new Wagon(posX, posY));
 	}
@@ -300,7 +310,21 @@ public class GamePanel extends JPanel implements ActionListener {
 				running = false;
 			}
 		}
-		
+
+		// VERIFICA SE O TREM CAPTURA UM ITEM
+		int count = 0;
+		try {
+			for (Person person : people) {
+				if ((person.getPosX() == train.trainParts.get(0).posX)
+						&& person.getPosY() == train.trainParts.get(0).posY) {
+					train.trainParts.add(new Wagon(train.trainParts.get(count).posX, train.trainParts.get(count).posY));
+					people.remove(person);
+				}
+			}
+		} catch (java.util.ConcurrentModificationException e) {
+			// TODO: handle exception
+		}
+
 		if (!running) {
 			timer.stop();
 		}
