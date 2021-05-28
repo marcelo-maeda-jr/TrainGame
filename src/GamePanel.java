@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	BufferedImage woodWagonH, woodWagonV;
 
 	BufferedImage personAImg, personBImg, personCImg, personDImg, personEImg;
-	
+
 	BufferedImage gasCan, giraffe, gold, tree;
 
 	BufferedImage wallImg;
@@ -52,6 +52,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	List<Wall> walls = new ArrayList<Wall>();
 	List<Person> people = new ArrayList<Person>();
+	List<Item> items = new ArrayList<Item>();
 
 	Train train = new Train();
 
@@ -64,6 +65,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		imageLoader();
 		placeWalls();
 		placePeople();
+		placeItems();
 		initialTrainPos(train, 5, 5);
 		startGame();
 	}
@@ -95,7 +97,7 @@ public class GamePanel extends JPanel implements ActionListener {
 			personCImg = ImageIO.read(new File("assets/People/personC.png"));
 			personDImg = ImageIO.read(new File("assets/People/personD.png"));
 			personEImg = ImageIO.read(new File("assets/People/personE.png"));
-			
+
 			// CARREGA IMAGENS DOS ITENS
 			gasCan = ImageIO.read(new File("assets/Items/gasCan.png"));
 			giraffe = ImageIO.read(new File("assets/Items/giraffe.png"));
@@ -126,6 +128,7 @@ public class GamePanel extends JPanel implements ActionListener {
 			drawCoordinateLines(g);
 			drawWall(g);
 			drawPerson(g);
+			drawItems(g);
 			drawTrain(g, train);
 		} else {
 			gameOver(g);
@@ -142,7 +145,13 @@ public class GamePanel extends JPanel implements ActionListener {
 		}
 	}
 
-	/* #### Paredes #### */
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	/* #### DEFINI METODO PARA DESENHAR Paredes #### */
 	public void placeWall(int posX, int PosY) {
 		walls.add(new Wall(posX, PosY));
 	}
@@ -164,8 +173,14 @@ public class GamePanel extends JPanel implements ActionListener {
 		}
 
 	}
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 
-	/* #### Pessoas #### */
+	/* #### DEFINI METODO PARA DESENHAR Pessoas #### */
 	public void placePersonA(int posX, int posY) {
 		people.add(new PersonA(posX, posY));
 	}
@@ -218,6 +233,61 @@ public class GamePanel extends JPanel implements ActionListener {
 		placePersonD(5, 2);
 		placePersonE(6, 2);
 	}
+	/*
+	 * 
+	 * 
+	 * 
+	 * */
+
+	/* #### DEFINI METODOS PARA DESENHAR ITENS #### */
+	public void placeGasCan(int posX, int posY) {
+		items.add(new GasCan(posX, posY));
+	}
+
+	public void placeGiraffe(int posX, int posY) {
+		items.add(new Giraffe(posX, posY));
+	}
+	
+	public void placeGold(int posX, int posY) {
+		items.add(new Gold(posX, posY));
+	}
+	
+	public void placeTree(int posX, int posY) {
+		items.add(new Tree(posX, posY));
+	}
+	
+	public void drawItems(Graphics g) {
+		for(Item item: items) {
+			if(item instanceof GasCan) {
+				g.drawImage(gasCan, item.getPosX() * UNIT_SIZE, item.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			}
+			if(item instanceof Giraffe) {
+				g.drawImage(giraffe, item.getPosX() * UNIT_SIZE, item.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			}
+			if(item instanceof Gold) {
+				g.drawImage(gold, item.getPosX() * UNIT_SIZE, item.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			}
+			if(item instanceof Tree) {
+				g.drawImage(tree, item.getPosX() * UNIT_SIZE, item.getPosY() * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE, null);
+			}
+		}
+	}
+	
+	public void placeItems() {
+		placeGasCan(2, 3);
+		placeGiraffe(3, 3);
+		placeGold(4, 3);
+		placeTree(5, 3);
+	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 
 	public void initialTrainPos(Train t, int posX, int PosY) {
 		t.trainParts.add(new TrainLocomotive(posX, PosY));
@@ -226,7 +296,6 @@ public class GamePanel extends JPanel implements ActionListener {
 	}
 
 	public void drawTrain(Graphics g, Train train) {
-		g.setColor(Color.red);
 		int currentPos = 0;
 		for (TrainPart trainPart : train.trainParts) {
 
