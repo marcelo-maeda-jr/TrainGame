@@ -291,8 +291,8 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	public void initialTrainPos(Train t, int posX, int PosY) {
 		t.trainParts.add(new TrainLocomotive(posX, PosY));
-		// t.trainParts.add(new Wagon(posX, PosY));
-		// t.trainParts.add(new Wagon(posX, PosY));
+		t.trainParts.add(new WoodWagon(posX - 1, PosY));
+		t.trainParts.add(new WoodWagon(posX - 2, PosY));
 	}
 
 	public void drawTrain(Graphics g, Train train) {
@@ -336,7 +336,78 @@ public class GamePanel extends JPanel implements ActionListener {
 								UNIT_SIZE, null);
 					}
 				}
-				
+				if (train.trainParts.get(currentPos) instanceof GasWagon) {
+					if (train.trainParts.get(currentPos - 1).posX > train.trainParts.get(currentPos).posX) {
+						g.drawImage(gasWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posX < train.trainParts.get(currentPos).posX) {
+						g.drawImage(gasWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posY < train.trainParts.get(currentPos).posY) {
+						g.drawImage(gasWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posY > train.trainParts.get(currentPos).posY) {
+						g.drawImage(gasWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+				}
+				if (train.trainParts.get(currentPos) instanceof GiraffeWagon) {
+					if (train.trainParts.get(currentPos - 1).posX > train.trainParts.get(currentPos).posX) {
+						g.drawImage(giraffeWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posX < train.trainParts.get(currentPos).posX) {
+						g.drawImage(giraffeWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posY < train.trainParts.get(currentPos).posY) {
+						g.drawImage(giraffeWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posY > train.trainParts.get(currentPos).posY) {
+						g.drawImage(giraffeWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+				}
+				if (train.trainParts.get(currentPos) instanceof GoldWagon) {
+					if (train.trainParts.get(currentPos - 1).posX > train.trainParts.get(currentPos).posX) {
+						g.drawImage(goldWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posX < train.trainParts.get(currentPos).posX) {
+						g.drawImage(goldWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posY < train.trainParts.get(currentPos).posY) {
+						g.drawImage(goldWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posY > train.trainParts.get(currentPos).posY) {
+						g.drawImage(goldWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+				}
+				if (train.trainParts.get(currentPos) instanceof WoodWagon) {
+					if (train.trainParts.get(currentPos - 1).posX > train.trainParts.get(currentPos).posX) {
+						g.drawImage(woodWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posX < train.trainParts.get(currentPos).posX) {
+						g.drawImage(woodWagonH, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posY < train.trainParts.get(currentPos).posY) {
+						g.drawImage(woodWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+					if (train.trainParts.get(currentPos - 1).posY > train.trainParts.get(currentPos).posY) {
+						g.drawImage(woodWagonV, trainPart.posX * UNIT_SIZE, trainPart.posY * UNIT_SIZE, UNIT_SIZE,
+								UNIT_SIZE, null);
+					}
+				}
 
 			}
 			currentPos += 1;
