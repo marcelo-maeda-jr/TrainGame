@@ -38,10 +38,16 @@ public class GamePanel extends JPanel implements ActionListener {
 	//sprites do jogo
 	BufferedImage trainLocomotiveImgL, trainLocomotiveImgR, trainLocomotiveImgU, trainLocomotiveImgD;
 	BufferedImage trainWagonH, trainWagonV;
+	BufferedImage gasWagonH, gasWagonV;
+	BufferedImage giraffeWagonH, giraffeWagonV;
+	BufferedImage goldWagonH, goldWagonV;
+	BufferedImage woodWagonH, woodWagonV;
+	
 	BufferedImage wallImg;
 	BufferedImage gameOverImg;
 
 	List<Wall> walls = new ArrayList<Wall>();
+	
 
 	Train train = new Train();
 
@@ -69,6 +75,14 @@ public class GamePanel extends JPanel implements ActionListener {
 			// carrega imagens dos vagoes
 			trainWagonH = ImageIO.read(new File("assets/wagons/wagonH.png"));
 			trainWagonV = ImageIO.read(new File("assets/wagons/wagonV.png"));
+			gasWagonH = ImageIO.read(new File("assets/wagons/gasWagonH.png"));
+			gasWagonV = ImageIO.read(new File("assets/wagons/gasWagonV.png"));
+			giraffeWagonH = ImageIO.read(new File("assets/wagons/giraffeWagonH.png"));
+			giraffeWagonV = ImageIO.read(new File("assets/wagons/giraffeWagonV.png"));
+			goldWagonH = ImageIO.read(new File("assets/wagons/goldWagonH.png"));
+			goldWagonV = ImageIO.read(new File("assets/wagons/goldWagonV.png"));
+			woodWagonH = ImageIO.read(new File("assets/wagons/woodWagonH.png"));
+			woodWagonV = ImageIO.read(new File("assets/wagons/woodWagonV.png"));
 
 			// carrega imagem da parede
 			wallImg = ImageIO.read(new File("assets/wall.png"));
